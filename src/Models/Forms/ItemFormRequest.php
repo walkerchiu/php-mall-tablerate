@@ -16,7 +16,7 @@ class ItemFormRequest extends FormRequest
         $request = Request::instance();
         $data = $this->all();
         if ($request->isMethod('put') && empty($data['id']) && isset($request->id)) {
-            $data['id'] = (int) $request->id;
+            $data['id'] = (string)) $request->id;
             $this->getInputSource()->replace($data);
         }
 
@@ -46,7 +46,7 @@ class ItemFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'setting_id' => ['required','integer','min:1','exists:'.config('wk-core.table.mall-tablerate.settings').',id'],
+            'setting_id' => ['required','string','exists:'.config('wk-core.table.mall-tablerate.settings').',id'],
             'area'       => ['required', Rule::in(config('wk-core.class.core.countryZone')::getCodes())],
             'region'     => 'nullable|string',
             'district'   => '',
@@ -59,7 +59,7 @@ class ItemFormRequest extends FormRequest
 
         $request = Request::instance();
         if ($request->isMethod('put') && isset($request->id)) {
-            $rules = array_merge($rules, ['id' => ['required','integer','min:1','exists:'.config('wk-core.table.mall-tablerate.items').',id']]);
+            $rules = array_merge($rules, ['id' => ['required','string','exists:'.config('wk-core.table.mall-tablerate.items').',id']]);
         }
 
         return $rules;
@@ -74,12 +74,10 @@ class ItemFormRequest extends FormRequest
     {
         return [
             'id.required'         => trans('php-core::validation.required'),
-            'id.integer'          => trans('php-core::validation.integer'),
-            'id.min'              => trans('php-core::validation.min'),
+            'id.string'           => trans('php-core::validation.string'),
             'id.exists'           => trans('php-core::validation.exists'),
             'setting_id.required' => trans('php-core::validation.required'),
-            'setting_id.integer'  => trans('php-core::validation.integer'),
-            'setting_id.min'      => trans('php-core::validation.min'),
+            'setting_id.string'   => trans('php-core::validation.string'),
             'setting_id.exists'   => trans('php-core::validation.exists'),
             'area.required'       => trans('php-core::validation.required'),
             'area.in'             => trans('php-core::validation.in'),

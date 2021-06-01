@@ -2,10 +2,10 @@
 
 namespace WalkerChiu\MallTableRate\Models\Entities;
 
-use WalkerChiu\Core\Models\Entities\Entity;
 use WalkerChiu\Core\Models\Entities\LangTrait;
+use WalkerChiu\Core\Models\Entities\UuidEntity;
 
-class Setting extends Entity
+class Setting extends UuidEntity
 {
     use LangTrait;
 

@@ -82,7 +82,7 @@ class ItemRepository extends Repository
 
     /**
      * @param String $host_type
-     * @param Int    $host_id
+     * @param String $host_id
      * @param String $area
      * @param String $region
      * @param String $district
@@ -117,7 +117,7 @@ class ItemRepository extends Repository
 
     /**
      * @param String $host_type
-     * @param Int    $host_id
+     * @param String $host_id
      * @param String $area
      * @param String $region
      * @param String $district

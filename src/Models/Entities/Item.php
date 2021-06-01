@@ -2,13 +2,11 @@
 
 namespace WalkerChiu\MallTableRate\Models\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use WalkerChiu\Core\Models\Entities\DateTrait;
+use Illuminate\Database\Eloquent\UuidModel;
 
-class Item extends Model
+class Item extends UuidModel
 {
-    use DateTrait;
     use SoftDeletes;
 
     protected $fillable = [

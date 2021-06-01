@@ -27,10 +27,10 @@ class TableRateService
     */
 
     /**
-     * @param  Int $setting_id
+     * @param  String $setting_id
      * @return Setting
      */
-    public function find(Int $setting_id)
+    public function find(String $setting_id)
     {
         $entity = $this->repository->find($setting_id);
 
@@ -41,12 +41,12 @@ class TableRateService
     }
 
     /**
-     * @param  Setting|Int $source
+     * @param  Setting|String $source
      * @return Setting
      */
     public function findBySource($source)
     {
-        if (is_integer($source))
+        if (is_string($source))
             $entity = $this->find($source);
         elseif (is_a($source, config('wk-core.class.mall-tablerate.setting')))
             $entity = $source;
@@ -65,8 +65,8 @@ class TableRateService
     */
 
     /**
-     * @param Setting|Int $source
-     * @param Int $setting_id
+     * @param Setting|String $source
+     * @param String $setting_id
      * @return Boolean
      */
     public function clearItems($source, $setting_id)
@@ -78,7 +78,7 @@ class TableRateService
 
     /**
      * @param String $host_type
-     * @param Int    $host_id
+     * @param String $host_id
      * @param String $area
      * @param String $region
      * @param String $district
@@ -104,7 +104,7 @@ class TableRateService
 
     /**
      * @param String $host_type
-     * @param Int    $host_id
+     * @param String $host_id
      * @param String $area
      * @param String $region
      * @param String $district
@@ -131,7 +131,7 @@ class TableRateService
 
     /**
      * @param String $host_type
-     * @param Int    $host_id
+     * @param String $host_id
      * @param String $area
      * @param String $region
      * @param String $district
