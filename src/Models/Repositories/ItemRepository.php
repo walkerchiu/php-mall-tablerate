@@ -22,12 +22,13 @@ class ItemRepository extends Repository
     }
 
     /**
-     * @param Array $data
-     * @param Int   $page
-     * @param Int   $nums per page
-     * @return Array
+     * @param Array   $data
+     * @param Int     $page
+     * @param Int     $nums per page
+     * @param Boolean $toArray
+     * @return Array|Collection
      */
-    public function list(Array $data, $page = null, $nums = null)
+    public function list(Array $data, $page = null, $nums = null, $toArray = true)
     {
         $this->assertForPagination($page, $nums);
 
@@ -71,13 +72,17 @@ class ItemRepository extends Repository
                             ->when(is_integer($page) && is_integer($nums), function ($query) use ($page, $nums) {
                                 return $query->forPage($page, $nums);
                             });
-        $list = [];
-        foreach ($records as $record) {
-            $data = $record->toArray();
-            array_push($list, $data);
-        }
+        if ($toArray) {
+            $list = [];
+            foreach ($records as $record) {
+                $data = $record->toArray();
+                array_push($list, $data);
+            }
 
-        return $list;
+            return $list;
+        } else {
+            return $records;
+        }
     }
 
     /**
@@ -87,7 +92,7 @@ class ItemRepository extends Repository
      * @param String $region
      * @param String $district
      * @param String $attribute
-     * @return Array
+     * @return Collection
      */
     public function getItemsForCheck($host_type, $host_id, String $area, $region, $district, String $attribute)
     {
