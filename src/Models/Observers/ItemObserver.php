@@ -110,6 +110,11 @@ class ItemObserver
      */
     public function deleted($entity)
     {
+        if (!config('wk-mall-tablerate.soft_delete')) {
+            $entity->forceDelete();
+        }
+
+
         if ($entity->isForceDeleting()) {
         }
     }

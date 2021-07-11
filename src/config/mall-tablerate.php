@@ -55,5 +55,16 @@ return [
     */
     'command' => [
         'cleaner' => 'WalkerChiu\MallTableRate\Console\Commands\MallTableRateCleaner'
-    ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Soft Delete
+    |--------------------------------------------------------------------------
+    |
+    | 0: Disable.
+    | 1: Enable.
+    |
+    */
+    'soft_delete' => 1
 ];
