@@ -98,13 +98,10 @@ class TableRateService
      * @param Float   $max
      * @return Bool
      *
-     * @throws NotExpectedEntityException
+     * @throws TypeError
      */
     public function checkOverlap(?string $host_type, ?string $host_id, string $area, ?string $region, ?string $district, string $attribute, float $min, float $max): bool
     {
-        if (!is_numeric($min))
-            throw new NotExpectedEntityException($min);
-
         $items = $this->repository_item->getItemsForCheck($host_type, $host_id, $area, $region, $district, $attribute);
 
         foreach ($items as $item) {
@@ -134,13 +131,10 @@ class TableRateService
      * @param Int     $nums
      * @return Array
      *
-     * @throws NotExpectedEntityException
+     * @throws TypeError
      */
     public function getItemForCalculate(?string $host_type, ?string $host_id, string $area, ?string $region, ?string $district, string $attribute, int $nums): ?array
     {
-        if (!is_numeric($nums))
-            throw new NotExpectedEntityException($nums);
-
         $item = $this->repository_item->getItemForCalculate($host_type, $host_id, $area, $region, $district, $attribute, $nums);
 
         if (empty($item))
@@ -168,11 +162,6 @@ class TableRateService
      */
     public function calculate(?string $host_type, ?string $host_id, string $area, ?string $region, ?string $district, string $attribute, int $nums, float $target): float
     {
-        if (!is_numeric($nums))
-            throw new NotExpectedEntityException($nums);
-        if (!is_numeric($target))
-            throw new NotExpectedEntityException($target);
-
         $item = $this->getItemForCalculate($host_type, $host_id, $area, $region, $district, $attribute, $nums);
 
         if (empty($item)) {
